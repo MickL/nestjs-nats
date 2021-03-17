@@ -1,10 +1,11 @@
-import { Controller, Get } from '@nestjs/common';
+import { Controller } from '@nestjs/common';
+import { MessagePattern } from '@nestjs/microservices';
 
 @Controller()
 export class MicroserviceController {
   constructor() {}
 
-  @Get()
+  @MessagePattern('something')
   getHello(): string {
     return 'Hello world';
   }

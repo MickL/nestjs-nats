@@ -14,6 +14,13 @@ export class ClientController {
         .pipe(timeout(2000))
         .toPromise();
 
-    return 'Hello world';
+    return 'Sent! You should not be able read this if .send() had an error.';
+  }
+
+  @Get('emit')
+  async getEmit(): Promise<string> {
+    await this.natsClient.emit<void>('something', {}).toPromise();
+
+    return 'Emitted! You should not be able read this if .emit() had an error.';
   }
 }

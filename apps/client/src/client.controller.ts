@@ -10,11 +10,11 @@ export class ClientController {
 
   @Get()
   async getHello(): Promise<string> {
-    await this.natsClient.send<void>('something', {})
+    const response = await this.natsClient.send<void>('something', {})
         .pipe(timeout(2000))
         .toPromise();
-
-    return 'Sent! You should not be able read this if .send() had an error.';
+    
+    return `Sent, response: '${response}'. You should not be able read this if .send() had an error.`;
   }
 
   @Get('emit')
